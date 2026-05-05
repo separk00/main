@@ -13,7 +13,7 @@
                 extend: {
                     colors: {
                         primary: {
-                            DEFAULT: '#558b2f', // 차분하고 명도 낮은 연녹색
+                            DEFAULT: '#558b2f', // 차분하고 명도 낮은 연녹색 (Olive/Sage)
                             50: '#f1f8e9',
                             100: '#dcedc8',
                             200: '#c5e1a5',
@@ -69,7 +69,7 @@
         <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
             <!-- Logo -->
             <a href="#" class="flex items-center gap-3 cursor-pointer">
-                <div class="flex h-10 w-12 items-center justify-center rounded-xl bg-primary-600 text-white font-black text-lg tracking-wider shadow-sm shadow-primary-200">SFI</div>
+                <div class="flex h-10 w-12 items-center justify-center rounded-xl bg-primary-600 text-white font-bold text-lg tracking-wider">SFI</div>
                 <div>
                     <h1 class="text-lg font-extrabold leading-none tracking-tight text-primary-600" data-ko="써빙프렌즈" data-en="Serving Friends International">써빙프렌즈</h1>
                     <p class="text-[10px] font-bold tracking-widest text-slate-400 mt-0.5">SURFERS SUPPORTERS</p>
@@ -116,7 +116,7 @@
         <!-- Background Pattern -->
         <div class="absolute inset-0 z-0 bg-grid opacity-60"></div>
         
-        <!-- Emotion Background Image -->
+        <!-- Emotion Background Image (교육/협력 상징 이미지) -->
         <div class="absolute inset-0 z-0 opacity-10" style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80'); background-size: cover; background-position: center; mix-blend-mode: multiply;"></div>
         
         <div class="container relative z-10 mx-auto px-6 text-center">
@@ -149,9 +149,23 @@
     </section>
 
     <!-- ==========================================
+         [Component: Intro Video] 
+    =========================================== -->
+    <section class="bg-white pt-32 pb-16 relative z-20">
+        <div class="mx-auto max-w-5xl px-6">
+            <!-- 둥근 모서리와 그림자를 주어 웹페이지와 자연스럽게 어울리도록 감쌈 -->
+            <div class="overflow-hidden rounded-3xl shadow-2xl shadow-primary-900/10 border border-slate-100 bg-slate-100">
+                <div style="padding:56.25% 0 0 0;position:relative;">
+                    <iframe src="https://player.vimeo.com/video/1189285822?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;loop=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Intro Video"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
          [Component: About Us] 
     =========================================== -->
-    <section id="about" class="py-32 bg-white">
+    <section id="about" class="py-16 bg-white">
         <div class="mx-auto max-w-7xl px-6">
             <div class="grid gap-16 lg:grid-cols-2 lg:items-center">
                 <!-- Text Content -->
@@ -744,7 +758,9 @@
             btn.disabled = false;
             btn.innerHTML = `✨ <span id="btn-hope-text" data-ko="AI로 다시 다듬기" data-en="Refine again with AI">${currentLang === 'ko' ? 'AI로 다시 다듬기' : 'Refine again with AI'}</span>`;
         }
-
     </script>
+    
+    <!-- Vimeo API Script -->
+    <script src="https://player.vimeo.com/api/player.js"></script>
 </body>
 </html>
