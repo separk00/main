@@ -13,17 +13,17 @@
                 extend: {
                     colors: {
                         primary: {
-                            DEFAULT: '#22c55e', // 써빙프렌즈 연녹색 (Green 500)
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            200: '#bbf7d0',
-                            300: '#86efac',
-                            400: '#4ade80',
-                            500: '#22c55e',
-                            600: '#16a34a', // 흰색 배경 텍스트용 (가독성)
-                            700: '#15803d',
-                            800: '#166534',
-                            900: '#14532d',
+                            DEFAULT: '#558b2f', // 차분하고 명도 낮은 연녹색
+                            50: '#f1f8e9',
+                            100: '#dcedc8',
+                            200: '#c5e1a5',
+                            300: '#aed581',
+                            400: '#9ccc65',
+                            500: '#689f38',
+                            600: '#558b2f', // 주력 컬러
+                            700: '#33691e',
+                            800: '#254d16',
+                            900: '#152b0c',
                         }
                     },
                     fontFamily: {
@@ -52,8 +52,8 @@
     <style>
         body { font-family: 'Pretendard', sans-serif; }
         .bg-grid {
-            /* 연녹색 도트 패턴 */
-            background-image: radial-gradient(rgba(34, 197, 94, 0.15) 1.5px, transparent 1.5px);
+            /* 차분한 연녹색 도트 패턴 */
+            background-image: radial-gradient(rgba(85, 139, 47, 0.15) 1.5px, transparent 1.5px);
             background-size: 30px 30px;
         }
         /* 숨김 처리 유틸리티 */
@@ -69,9 +69,9 @@
         <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
             <!-- Logo -->
             <a href="#" class="flex items-center gap-3 cursor-pointer">
-                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white font-bold text-lg">SF</div>
+                <div class="flex h-10 w-12 items-center justify-center rounded-xl bg-primary-600 text-white font-black text-lg tracking-wider shadow-sm shadow-primary-200">SFI</div>
                 <div>
-                    <h1 class="text-lg font-extrabold leading-none tracking-tight text-primary-600" data-ko="써빙프렌즈" data-en="Serving Friends">써빙프렌즈</h1>
+                    <h1 class="text-lg font-extrabold leading-none tracking-tight text-primary-600" data-ko="써빙프렌즈" data-en="Serving Friends International">써빙프렌즈</h1>
                     <p class="text-[10px] font-bold tracking-widest text-slate-400 mt-0.5">SURFERS SUPPORTERS</p>
                 </div>
             </a>
@@ -112,7 +112,7 @@
     <!-- ==========================================
          [Component: Hero Section] 
     =========================================== -->
-    <section class="relative flex min-h-screen items-center justify-center pt-20 overflow-hidden bg-slate-50">
+    <section class="relative flex min-h-screen items-center justify-center pt-20 overflow-hidden bg-primary-50/50">
         <!-- Background Pattern -->
         <div class="absolute inset-0 z-0 bg-grid opacity-60"></div>
         
@@ -120,7 +120,7 @@
         <div class="absolute inset-0 z-0 opacity-10" style="background-image: url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&q=80'); background-size: cover; background-position: center; mix-blend-mode: multiply;"></div>
         
         <div class="container relative z-10 mx-auto px-6 text-center">
-            <div class="inline-block animate-bounce-slow rounded-full bg-white px-4 py-1.5 text-xs font-bold text-primary-600 mb-8 shadow-sm border border-primary-100">
+            <div class="inline-block animate-bounce-slow rounded-full bg-white px-5 py-2 text-xs font-bold text-primary-600 mb-8 shadow-sm border border-primary-100">
                 AI Future Skills Project 2026
             </div>
             <h2 class="animate-fade-up text-5xl font-extrabold tracking-tight text-slate-900 sm:text-7xl leading-[1.2]" data-ko="AI로 그리는 <br/><span class='text-primary-600'>미얀마 청소년의 내일</span>" data-en="Painting Tomorrow <br/>with <span class='text-primary-600'>AI</span>">
@@ -132,7 +132,7 @@
             </p>
             
             <div class="mt-12 flex flex-col justify-center gap-4 sm:flex-row animate-fade-up" style="animation-delay: 0.4s;">
-                <a href="#stories" class="group flex items-center justify-center gap-2 rounded-full bg-primary-500 px-10 py-5 text-lg font-bold text-white transition-all hover:bg-primary-600 hover:shadow-xl hover:shadow-primary-200">
+                <a href="#stories" class="group flex items-center justify-center gap-2 rounded-full bg-primary-600 px-10 py-5 text-lg font-bold text-white transition-all hover:bg-primary-700 hover:shadow-xl hover:shadow-primary-200">
                     <span data-ko="우리의 이야기 듣기" data-en="Hear Our Stories">우리의 이야기 듣기</span>
                     <i data-lucide="chevron-right" class="w-5 h-5 transition-transform group-hover:translate-x-1"></i>
                 </a>
@@ -216,8 +216,8 @@
             <div class="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 <!-- Card 1 -->
                 <div class="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all hover:shadow-xl hover:-translate-y-2">
-                    <div class="h-64 bg-orange-50 flex items-center justify-center p-8 relative overflow-hidden">
-                        <div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?auto=format&fit=crop&q=80')] bg-cover"></div>
+                    <div class="h-64 bg-primary-50 flex items-center justify-center p-8 relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-30 bg-[url('https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?auto=format&fit=crop&q=80')] bg-cover"></div>
                         <div class="h-32 w-32 relative z-10 rounded-full bg-white shadow-lg flex items-center justify-center overflow-hidden border-4 border-white">
                             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Zin&backgroundColor=ffffff" alt="Avatar" class="w-full h-full">
                         </div>
@@ -245,7 +245,7 @@
 
                 <!-- Card 2 -->
                 <div class="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all hover:shadow-xl hover:-translate-y-2">
-                    <div class="h-64 bg-purple-50 flex items-center justify-center p-8 relative overflow-hidden">
+                    <div class="h-64 bg-primary-100 flex items-center justify-center p-8 relative overflow-hidden">
                         <div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80')] bg-cover"></div>
                         <div class="h-32 w-32 relative z-10 rounded-full bg-white shadow-lg flex items-center justify-center overflow-hidden border-4 border-white">
                             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Min&style=circle&backgroundColor=ffffff" alt="Avatar" class="w-full h-full">
@@ -274,7 +274,7 @@
 
                 <!-- Card 3 -->
                 <div class="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all hover:shadow-xl hover:-translate-y-2">
-                    <div class="h-64 bg-yellow-50 flex items-center justify-center p-8 relative overflow-hidden">
+                    <div class="h-64 bg-primary-50 flex items-center justify-center p-8 relative overflow-hidden">
                         <div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80')] bg-cover"></div>
                         <div class="h-32 w-32 relative z-10 rounded-full bg-white shadow-lg flex items-center justify-center overflow-hidden border-4 border-white">
                             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Su&backgroundColor=ffffff" alt="Avatar" class="w-full h-full">
@@ -307,21 +307,21 @@
     <!-- ==========================================
          [Component: Vision & Dreams] 
     =========================================== -->
-    <section id="vision" class="bg-primary-500 py-32 text-white overflow-hidden relative">
+    <section id="vision" class="bg-primary-600 py-32 text-white overflow-hidden relative">
         <!-- Decoration -->
         <div class="absolute top-0 right-0 -mr-32 -mt-32 w-96 h-96 rounded-full bg-white opacity-10 blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 -ml-32 -mb-32 w-96 h-96 rounded-full bg-primary-700 opacity-30 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -ml-32 -mb-32 w-96 h-96 rounded-full bg-primary-900 opacity-40 blur-3xl"></div>
 
         <div class="mx-auto max-w-7xl px-6 relative z-10">
             <div class="text-center">
                 <h3 class="text-4xl font-extrabold tracking-tight" data-ko="AI 퓨처 스킬 커리큘럼" data-en="AI Future Skills Curriculum">AI 퓨처 스킬 커리큘럼</h3>
-                <p class="mt-4 text-primary-50 font-medium" data-ko="디지털 노마드와 원격 프리랜서로서의 경제적 자립을 목표로 교육합니다." data-en="We aim for their financial independence as digital nomads and remote freelancers.">디지털 노마드와 원격 프리랜서로서의 경제적 자립을 목표로 교육합니다.</p>
+                <p class="mt-4 text-primary-100 font-medium" data-ko="디지털 노마드와 원격 프리랜서로서의 경제적 자립을 목표로 교육합니다." data-en="We aim for their financial independence as digital nomads and remote freelancers.">디지털 노마드와 원격 프리랜서로서의 경제적 자립을 목표로 교육합니다.</p>
             </div>
 
             <!-- Curriculum Steps -->
             <div class="mt-20 grid gap-10 md:grid-cols-4 relative">
                 <!-- Connector line (desktop) -->
-                <div class="hidden md:block absolute top-8 left-[10%] right-[10%] h-[1px] bg-primary-300/40"></div>
+                <div class="hidden md:block absolute top-8 left-[10%] right-[10%] h-[1px] bg-primary-400/40"></div>
 
                 <div class="relative text-center group">
                     <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur border border-white/20 transition-transform group-hover:scale-110 relative z-10">
@@ -444,7 +444,7 @@
                     </label>
                 </div>
 
-                <button class="mt-12 block w-full rounded-2xl bg-primary-500 py-6 text-xl font-black text-white shadow-xl shadow-primary-200 transition-all hover:bg-primary-600 hover:scale-[1.02] active:scale-95" onclick="alert('결제 데모 페이지입니다.')" data-ko="지금 후원하기" data-en="Donate Now">
+                <button class="mt-12 block w-full rounded-2xl bg-primary-600 py-6 text-xl font-black text-white shadow-xl shadow-primary-200 transition-all hover:bg-primary-700 hover:scale-[1.02] active:scale-95" onclick="alert('결제 데모 페이지입니다.')" data-ko="지금 후원하기" data-en="Donate Now">
                     지금 후원하기
                 </button>
             </div>
@@ -460,10 +460,10 @@
                 <!-- Branding -->
                 <div class="col-span-1 md:col-span-2">
                     <div class="flex items-center gap-3">
-                        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-primary-600 font-bold text-xl">SF</div>
-                        <h1 class="text-xl font-black tracking-tight uppercase">Serving Friends</h1>
+                        <div class="flex h-10 w-12 items-center justify-center rounded-xl bg-white text-primary-600 font-bold text-lg tracking-wider">SFI</div>
+                        <h1 class="text-xl font-black tracking-tight uppercase">Serving Friends International</h1>
                     </div>
-                    <p class="mt-6 max-w-sm text-slate-400 text-sm leading-relaxed font-medium" data-ko="써빙프렌즈는 전 세계 소외된 이웃들에게 실질적인 도움과 자립의 기회를 제공하는 국제구호개발 NGO입니다. 쿠알라룸푸르 프로젝트는 난민 청소년의 꿈을 응원합니다." data-en="Serving Friends is an international NGO providing practical help and opportunities for independence to marginalized neighbors worldwide.">
+                    <p class="mt-6 max-w-sm text-slate-400 text-sm leading-relaxed font-medium" data-ko="써빙프렌즈는 전 세계 소외된 이웃들에게 실질적인 도움과 자립의 기회를 제공하는 국제구호개발 NGO입니다. 쿠알라룸푸르 프로젝트는 난민 청소년의 꿈을 응원합니다." data-en="Serving Friends International is an international NGO providing practical help and opportunities for independence to marginalized neighbors worldwide.">
                         써빙프렌즈는 전 세계 소외된 이웃들에게 실질적인 도움과 자립의 기회를 제공하는 국제구호개발 NGO입니다. 
                         쿠알라룸푸르 프로젝트는 난민 청소년의 꿈을 응원합니다.
                     </p>
@@ -499,7 +499,7 @@
             <!-- Bottom -->
             <div class="mt-12 flex flex-col items-center justify-between gap-6 md:flex-row">
                 <p class="text-xs text-slate-500 font-medium">
-                    &copy; 2026 SERVING FRIENDS / SURFERS. All Rights Reserved.
+                    &copy; 2026 SERVING FRIENDS INTERNATIONAL / SURFERS. All Rights Reserved.
                 </p>
                 <div class="flex gap-6">
                     <a href="#" class="text-xs text-slate-500 hover:text-white transition-colors font-bold" data-ko="개인정보처리방침" data-en="Privacy Policy">개인정보처리방침</a>
