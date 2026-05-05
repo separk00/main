@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>써빙프렌즈 | 미얀마 난민 청소년 후원</title>
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#22c55e', // 써빙프렌즈 연녹색 (Green 500)
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a', // 흰색 배경 텍스트용 (가독성)
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-up': 'fadeUp 1s ease-out forwards',
+                        'bounce-slow': 'bounce 3s infinite',
+                    },
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Web Font (Pretendard) -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <style>
+        body { font-family: 'Pretendard', sans-serif; }
+        .bg-grid {
+            /* 연녹색 도트 패턴 */
+            background-image: radial-gradient(rgba(34, 197, 94, 0.15) 1.5px, transparent 1.5px);
+            background-size: 30px 30px;
+        }
+        /* 숨김 처리 유틸리티 */
+        .hidden-content { display: none; }
+    </style>
+</head>
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-primary-100 selection:text-primary-700">
+
+    <!-- ==========================================
+         [Component: Header] 
+    =========================================== -->
+    <header class="fixed top-0 z-50 w-full border-b border-slate-100 bg-white/80 backdrop-blur-md transition-all duration-300" id="header">
+        <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 cursor-pointer">
+                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white font-bold text-lg">SF</div>
+                <div>
+                    <h1 class="text-lg font-extrabold leading-none tracking-tight text-primary-600" data-ko="써빙프렌즈" data-en="Serving Friends">써빙프렌즈</h1>
+                    <p class="text-[10px] font-bold tracking-widest text-slate-400 mt-0.5">SURFERS SUPPORTERS</p>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden items-center gap-10 md:flex">
+                <a href="#about" class="text-sm font-semibold text-slate-600 transition-colors hover:text-primary-600" data-ko="소개" data-en="About">소개</a>
+                <a href="#stories" class="text-sm font-semibold text-slate-600 transition-colors hover:text-primary-600" data-ko="스토리" data-en="Stories">스토리</a>
+                <a href="#vision" class="text-sm font-semibold text-slate-600 transition-colors hover:text-primary-600" data-ko="비전" data-en="Vision">비전</a>
+                <a href="#support" class="text-sm font-semibold text-slate-600 transition-colors hover:text-primary-600" data-ko="후원안내" data-en="Donate">후원안내</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-4">
+                <!-- Lang Toggle -->
+                <button onclick="toggleLanguage()" class="flex items-center gap-2 rounded-full border border-slate-200 px-4 py-1.5 text-xs font-bold text-slate-600 transition-all hover:bg-slate-50 hover:border-primary-200 active:scale-95 group">
+                    <i data-lucide="globe" class="text-primary-500 w-4 h-4 group-hover:text-primary-600"></i>
+                    <span id="lang-text" class="group-hover:text-primary-700">KOREAN</span>
+                </button>
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden" onclick="toggleMobileMenu()">
+                    <i data-lucide="menu" class="text-slate-700 w-6 h-6" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div id="mobile-menu" class="hidden-content absolute top-20 left-0 w-full bg-white border-b border-slate-100 p-6 md:hidden shadow-lg">
+            <div class="flex flex-col gap-6">
+                <a href="#about" onclick="toggleMobileMenu()" class="text-lg font-bold text-slate-700 hover:text-primary-600" data-ko="소개" data-en="About">소개</a>
+                <a href="#stories" onclick="toggleMobileMenu()" class="text-lg font-bold text-slate-700 hover:text-primary-600" data-ko="스토리" data-en="Stories">스토리</a>
+                <a href="#vision" onclick="toggleMobileMenu()" class="text-lg font-bold text-slate-700 hover:text-primary-600" data-ko="비전" data-en="Vision">비전</a>
+                <a href="#support" onclick="toggleMobileMenu()" class="text-lg font-bold text-slate-700 hover:text-primary-600" data-ko="후원안내" data-en="Donate">후원안내</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         [Component: Hero Section] 
+    =========================================== -->
+    <section class="relative flex min-h-screen items-center justify-center pt-20 overflow-hidden bg-slate-50">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 z-0 bg-grid opacity-60"></div>
+        
+        <!-- Emotion Background Image -->
+        <div class="absolute inset-0 z-0 opacity-10" style="background-image: url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&q=80'); background-size: cover; background-position: center; mix-blend-mode: multiply;"></div>
+        
+        <div class="container relative z-10 mx-auto px-6 text-center">
+            <div class="inline-block animate-bounce-slow rounded-full bg-white px-4 py-1.5 text-xs font-bold text-primary-600 mb-8 shadow-sm border border-primary-100">
+                AI Future Skills Project 2026
+            </div>
+            <h2 class="animate-fade-up text-5xl font-extrabold tracking-tight text-slate-900 sm:text-7xl leading-[1.2]" data-ko="AI로 그리는 <br/><span class='text-primary-600'>미얀마 청소년의 내일</span>" data-en="Painting Tomorrow <br/>with <span class='text-primary-600'>AI</span>">
+                AI로 그리는 <br/><span class="text-primary-600">미얀마 청소년의 내일</span>
+            </h2>
+            <p class="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-slate-500 sm:text-xl font-medium animate-fade-up" style="animation-delay: 0.2s;" data-ko="쿠알라룸푸르 샘난민센터의 아이들이 디지털 장벽을 넘어 자신의 꿈을 데이터와 예술로 표현하는 새로운 여정을 시작합니다." data-en="Children at Sam Refugee Center in KL are breaking digital barriers to express their dreams through data and art.">
+                쿠알라룸푸르 샘난민센터의 아이들이 디지털 장벽을 넘어<br class="hidden sm:block"> 
+                자신의 꿈을 데이터와 예술로 표현하는 새로운 여정을 시작합니다.
+            </p>
+            
+            <div class="mt-12 flex flex-col justify-center gap-4 sm:flex-row animate-fade-up" style="animation-delay: 0.4s;">
+                <a href="#stories" class="group flex items-center justify-center gap-2 rounded-full bg-primary-500 px-10 py-5 text-lg font-bold text-white transition-all hover:bg-primary-600 hover:shadow-xl hover:shadow-primary-200">
+                    <span data-ko="우리의 이야기 듣기" data-en="Hear Our Stories">우리의 이야기 듣기</span>
+                    <i data-lucide="chevron-right" class="w-5 h-5 transition-transform group-hover:translate-x-1"></i>
+                </a>
+                <a href="#support" class="flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-10 py-5 text-lg font-bold text-slate-600 transition-all hover:bg-primary-50 hover:border-primary-200 hover:text-primary-700">
+                    <span data-ko="지금 함께하기" data-en="Join Us Now">지금 함께하기</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center opacity-50 animate-bounce-slow">
+            <div class="h-12 w-[2px] bg-gradient-to-b from-primary-400 to-transparent rounded-full"></div>
+            <span class="text-[10px] font-bold tracking-widest mt-2 uppercase text-slate-400">Scroll</span>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         [Component: About Us] 
+    =========================================== -->
+    <section id="about" class="py-32 bg-white">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="grid gap-16 lg:grid-cols-2 lg:items-center">
+                <!-- Text Content -->
+                <div>
+                    <span class="text-sm font-bold tracking-widest text-primary-600 uppercase">About Project</span>
+                    <h3 class="mt-4 text-4xl font-extrabold tracking-tight text-slate-900" data-ko="샘난민센터와 <br />써퍼즈가 만드는 변화" data-en="The Change created by <br/>Sam Center & Surfers">
+                        샘난민센터와 <br />써퍼즈가 만드는 변화
+                    </h3>
+                    <p class="mt-6 text-lg leading-relaxed text-slate-600" data-ko="쿠알라룸푸르 외곽에 위치한 샘난민센터는 교육의 기회가 단절된 미얀마 청소년들의 유일한 보금자리입니다. '써퍼즈'는 이 아이들이 단순히 도움을 받는 존재가 아니라, AI라는 도구를 통해 세상과 소통하는 창작자가 되도록 돕습니다." data-en="Sam Refugee Center in Kuala Lumpur is the only home for Myanmar youths cut off from education. 'Surfers' helps them become creators communicating with the world through AI.">
+                        쿠알라룸푸르 외곽에 위치한 샘난민센터는 교육의 기회가 단절된 미얀마 청소년들의 유일한 보금자리입니다. 
+                        '써퍼즈'는 이 아이들이 단순히 도움을 받는 존재가 아니라, AI라는 도구를 통해 세상과 소통하는 창작자가 되도록 돕습니다.
+                    </p>
+                    
+                    <!-- Infographics -->
+                    <div class="mt-12 grid grid-cols-2 gap-6">
+                        <div class="rounded-3xl bg-primary-50/50 p-6 border border-primary-100 transition-transform hover:-translate-y-1">
+                            <i data-lucide="users" class="text-primary-500 w-8 h-8 mb-4"></i>
+                            <div class="text-3xl font-black text-slate-900">120<span class="text-primary-500 text-xl">+</span></div>
+                            <div class="text-sm font-bold text-slate-700 mt-2" data-ko="지원 학생수" data-en="Supported Youths">지원 학생수</div>
+                            <div class="text-xs text-slate-500 mt-1" data-ko="미얀마 난민 청소년" data-en="Myanmar Refugee Youths">미얀마 난민 청소년</div>
+                        </div>
+                        <div class="rounded-3xl bg-primary-50/50 p-6 border border-primary-100 transition-transform hover:-translate-y-1">
+                            <i data-lucide="book-open" class="text-primary-500 w-8 h-8 mb-4"></i>
+                            <div class="text-3xl font-black text-slate-900">12<span class="text-primary-500 text-xl">과정</span></div>
+                            <div class="text-sm font-bold text-slate-700 mt-2" data-ko="AI 커리큘럼" data-en="AI Curriculum">AI 커리큘럼</div>
+                            <div class="text-xs text-slate-500 mt-1" data-ko="디지털 창작 및 실습" data-en="Digital Creation Practice">디지털 창작 및 실습</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image Grid -->
+                <div class="grid gap-4 grid-cols-2">
+                    <div class="space-y-4 pt-12">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=400" alt="Education" class="h-64 w-full rounded-3xl object-cover shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=400" alt="Teamwork" class="h-48 w-full rounded-3xl object-cover shadow-sm">
+                    </div>
+                    <div class="space-y-4">
+                        <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80&w=400" alt="Technology" class="h-48 w-full rounded-3xl object-cover shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=400" alt="Smile" class="h-64 w-full rounded-3xl object-cover shadow-sm">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         [Component: Our Stories] 
+    =========================================== -->
+    <section id="stories" class="py-32 bg-slate-50">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="flex flex-col items-end justify-between gap-6 md:flex-row">
+                <div>
+                    <span class="text-sm font-bold tracking-widest text-primary-600 uppercase">Our Stories</span>
+                    <h3 class="mt-4 text-4xl font-extrabold text-slate-900" data-ko="AI로 피어난 아이들의 목소리" data-en="Voices Blooming through AI">AI로 피어난 아이들의 목소리</h3>
+                </div>
+                <p class="max-w-md text-right text-slate-500 font-medium" data-ko="아이들이 직접 생성형 AI를 활용해 자신의 정체성과 꿈을 시각화한 결과물입니다." data-en="These are the results of children visualizing their identities and dreams using Generative AI.">
+                    아이들이 직접 생성형 AI를 활용해 자신의 정체성과 꿈을 시각화한 결과물입니다.
+                </p>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- Card 1 -->
+                <div class="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all hover:shadow-xl hover:-translate-y-2">
+                    <div class="h-64 bg-orange-50 flex items-center justify-center p-8 relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?auto=format&fit=crop&q=80')] bg-cover"></div>
+                        <div class="h-32 w-32 relative z-10 rounded-full bg-white shadow-lg flex items-center justify-center overflow-hidden border-4 border-white">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Zin&backgroundColor=ffffff" alt="Avatar" class="w-full h-full">
+                        </div>
+                        <div class="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur rounded-full px-3 py-1 text-[10px] font-bold text-primary-700">🎨 AI Gen Art</div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-bold text-slate-900">Zin (16세)</span>
+                            <span class="rounded-full bg-primary-50 px-3 py-1 text-[11px] font-bold text-primary-700" data-ko="미래의 디자이너" data-en="Future Designer">미래의 디자이너</span>
+                        </div>
+                        <div class="mt-6">
+                            <p class="text-sm leading-relaxed text-slate-600 font-medium h-16 story-text" 
+                               data-ko="전쟁이 없는 나의 고향, 꽃이 가득한 평화로운 정원을 AI로 그려봤어요." 
+                               data-en="I drew my hometown without war, a peaceful garden full of flowers using AI."
+                               data-my="စစ်ပွဲမရှိသော ငါ့မွေးရပ်မြေ၊ ပန်းတွေပြည့်နေတဲ့ ငြိမ်းချမ်းတဲ့ဥယျာဉ်ကို AI နဲ့ ဆွဲခဲ့တယ်။">
+                               "전쟁이 없는 나의 고향, 꽃이 가득한 평화로운 정원을 AI로 그려봤어요."
+                            </p>
+                            <button onclick="toggleStoryLang(this)" class="mt-6 flex items-center gap-2 text-xs font-bold text-primary-600 hover:text-primary-800 transition-colors">
+                                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                                <span class="btn-text" data-ko="미얀마어 원문 보기" data-en="Read in Myanmar">미얀마어 원문 보기</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all hover:shadow-xl hover:-translate-y-2">
+                    <div class="h-64 bg-purple-50 flex items-center justify-center p-8 relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80')] bg-cover"></div>
+                        <div class="h-32 w-32 relative z-10 rounded-full bg-white shadow-lg flex items-center justify-center overflow-hidden border-4 border-white">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Min&style=circle&backgroundColor=ffffff" alt="Avatar" class="w-full h-full">
+                        </div>
+                        <div class="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur rounded-full px-3 py-1 text-[10px] font-bold text-primary-700">💻 AI Gen Art</div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-bold text-slate-900">Min (14세)</span>
+                            <span class="rounded-full bg-primary-50 px-3 py-1 text-[11px] font-bold text-primary-700" data-ko="코딩 전문가 지망" data-en="Aspiring Coder">코딩 전문가 지망</span>
+                        </div>
+                        <div class="mt-6">
+                            <p class="text-sm leading-relaxed text-slate-600 font-medium h-16 story-text" 
+                               data-ko="컴퓨터 속의 넓은 세상이 저의 새로운 놀이터입니다. 프롬프트로 세상을 만들어요." 
+                               data-en="The vast world inside the computer is my new playground. I build worlds with prompts."
+                               data-my="ကွန်ပြူတာထဲက ကျယ်ပြောလှတဲ့ကမ္ဘာဟာ ကျွန်တော့်ရဲ့ ကစားကွင်းအသစ်ပါ။">
+                               "컴퓨터 속의 넓은 세상이 저의 새로운 놀이터입니다. 프롬프트로 세상을 만들어요."
+                            </p>
+                            <button onclick="toggleStoryLang(this)" class="mt-6 flex items-center gap-2 text-xs font-bold text-primary-600 hover:text-primary-800 transition-colors">
+                                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                                <span class="btn-text" data-ko="미얀마어 원문 보기" data-en="Read in Myanmar">미얀마어 원문 보기</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all hover:shadow-xl hover:-translate-y-2">
+                    <div class="h-64 bg-yellow-50 flex items-center justify-center p-8 relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80')] bg-cover"></div>
+                        <div class="h-32 w-32 relative z-10 rounded-full bg-white shadow-lg flex items-center justify-center overflow-hidden border-4 border-white">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Su&backgroundColor=ffffff" alt="Avatar" class="w-full h-full">
+                        </div>
+                        <div class="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur rounded-full px-3 py-1 text-[10px] font-bold text-primary-700">📝 AI Gen Art</div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-bold text-slate-900">Su (17세)</span>
+                            <span class="rounded-full bg-primary-50 px-3 py-1 text-[11px] font-bold text-primary-700" data-ko="글로벌 번역가" data-en="Global Translator">글로벌 번역가</span>
+                        </div>
+                        <div class="mt-6">
+                            <p class="text-sm leading-relaxed text-slate-600 font-medium h-16 story-text" 
+                               data-ko="언어의 장벽을 허무는 AI 기술을 배워서 사람들을 돕는 프리랜서가 되고 싶어요." 
+                               data-en="I want to learn AI tech that breaks language barriers to become a freelancer helping people."
+                               data-my="ဘာသာစကား အတားအဆီးတွေကို ဖြိုခွဲတဲ့ AI နည်းပညာကို သင်ယူချင်ပါတယ်။">
+                               "언어의 장벽을 허무는 AI 기술을 배워서 사람들을 돕는 프리랜서가 되고 싶어요."
+                            </p>
+                            <button onclick="toggleStoryLang(this)" class="mt-6 flex items-center gap-2 text-xs font-bold text-primary-600 hover:text-primary-800 transition-colors">
+                                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                                <span class="btn-text" data-ko="미얀마어 원문 보기" data-en="Read in Myanmar">미얀마어 원문 보기</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         [Component: Vision & Dreams] 
+    =========================================== -->
+    <section id="vision" class="bg-primary-500 py-32 text-white overflow-hidden relative">
+        <!-- Decoration -->
+        <div class="absolute top-0 right-0 -mr-32 -mt-32 w-96 h-96 rounded-full bg-white opacity-10 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -ml-32 -mb-32 w-96 h-96 rounded-full bg-primary-700 opacity-30 blur-3xl"></div>
+
+        <div class="mx-auto max-w-7xl px-6 relative z-10">
+            <div class="text-center">
+                <h3 class="text-4xl font-extrabold tracking-tight" data-ko="AI 퓨처 스킬 커리큘럼" data-en="AI Future Skills Curriculum">AI 퓨처 스킬 커리큘럼</h3>
+                <p class="mt-4 text-primary-50 font-medium" data-ko="디지털 노마드와 원격 프리랜서로서의 경제적 자립을 목표로 교육합니다." data-en="We aim for their financial independence as digital nomads and remote freelancers.">디지털 노마드와 원격 프리랜서로서의 경제적 자립을 목표로 교육합니다.</p>
+            </div>
+
+            <!-- Curriculum Steps -->
+            <div class="mt-20 grid gap-10 md:grid-cols-4 relative">
+                <!-- Connector line (desktop) -->
+                <div class="hidden md:block absolute top-8 left-[10%] right-[10%] h-[1px] bg-primary-300/40"></div>
+
+                <div class="relative text-center group">
+                    <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur border border-white/20 transition-transform group-hover:scale-110 relative z-10">
+                        <i data-lucide="smartphone" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <div class="text-xs font-bold text-primary-200 uppercase tracking-widest">Step 01</div>
+                    <div class="mt-2 text-xl font-bold" data-ko="디지털 리터러시" data-en="Digital Literacy">디지털 리터러시</div>
+                    <p class="mt-2 text-sm text-primary-100/90 font-medium" data-ko="기기 활용 및 인터넷 윤리" data-en="Device Usage & Ethics">기기 활용 및 인터넷 윤리</p>
+                </div>
+
+                <div class="relative text-center group">
+                    <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur border border-white/20 transition-transform group-hover:scale-110 relative z-10">
+                        <i data-lucide="cpu" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <div class="text-xs font-bold text-primary-200 uppercase tracking-widest">Step 02</div>
+                    <div class="mt-2 text-xl font-bold" data-ko="생성형 AI 기초" data-en="Gen-AI Basics">생성형 AI 기초</div>
+                    <p class="mt-2 text-sm text-primary-100/90 font-medium" data-ko="프롬프트 엔지니어링 실습" data-en="Prompt Engineering">프롬프트 엔지니어링 실습</p>
+                </div>
+
+                <div class="relative text-center group">
+                    <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur border border-white/20 transition-transform group-hover:scale-110 relative z-10">
+                        <i data-lucide="monitor" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <div class="text-xs font-bold text-primary-200 uppercase tracking-widest">Step 03</div>
+                    <div class="mt-2 text-xl font-bold" data-ko="디지털 창작" data-en="Digital Creation">디지털 창작</div>
+                    <p class="mt-2 text-sm text-primary-100/90 font-medium" data-ko="이미지 및 텍스트 포트폴리오" data-en="Portfolio Building">이미지 및 텍스트 포트폴리오</p>
+                </div>
+
+                <div class="relative text-center group">
+                    <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur border border-white/20 transition-transform group-hover:scale-110 relative z-10">
+                        <i data-lucide="server" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <div class="text-xs font-bold text-primary-200 uppercase tracking-widest">Step 04</div>
+                    <div class="mt-2 text-xl font-bold" data-ko="자립 역량 강화" data-en="Independence">자립 역량 강화</div>
+                    <p class="mt-2 text-sm text-primary-100/90 font-medium" data-ko="원격 프리랜서 마켓 진입" data-en="Remote Market Entry">원격 프리랜서 마켓 진입</p>
+                </div>
+            </div>
+
+            <!-- Future Jobs Tags -->
+            <div class="mt-24 bg-white/10 rounded-3xl p-8 border border-white/10 shadow-inner">
+                <h4 class="text-center text-sm font-bold uppercase tracking-widest text-primary-100 mb-8" data-ko="청소년들이 꿈꾸는 미래 직업" data-en="Future Jobs They Dream Of">청소년들이 꿈꾸는 미래 직업</h4>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <span class="rounded-full bg-white/10 px-6 py-3 text-sm font-bold backdrop-blur hover:bg-white hover:text-primary-700 transition-colors cursor-default" data-ko="원격 디지털 디자이너" data-en="Remote Digital Designer">원격 디지털 디자이너</span>
+                    <span class="rounded-full bg-white/10 px-6 py-3 text-sm font-bold backdrop-blur hover:bg-white hover:text-primary-700 transition-colors cursor-default" data-ko="AI 데이터 튜터" data-en="AI Data Tutor">AI 데이터 튜터</span>
+                    <span class="rounded-full bg-white/10 px-6 py-3 text-sm font-bold backdrop-blur hover:bg-white hover:text-primary-700 transition-colors cursor-default" data-ko="다국어 번역가" data-en="Multilingual Translator">다국어 번역가</span>
+                    <span class="rounded-full bg-white/10 px-6 py-3 text-sm font-bold backdrop-blur hover:bg-white hover:text-primary-700 transition-colors cursor-default" data-ko="소셜 미디어 매니저" data-en="Social Media Manager">소셜 미디어 매니저</span>
+                    <span class="rounded-full bg-white/10 px-6 py-3 text-sm font-bold backdrop-blur hover:bg-white hover:text-primary-700 transition-colors cursor-default" data-ko="프롬프트 엔지니어" data-en="Prompt Engineer">프롬프트 엔지니어</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         [Component: Support Us] 
+    =========================================== -->
+    <section id="support" class="py-32 bg-white relative">
+        <div class="mx-auto max-w-4xl px-6 relative z-10">
+            <div class="text-center">
+                <i data-lucide="heart" class="mx-auto text-primary-500 w-12 h-12 mb-6 fill-current"></i>
+                <h3 class="text-4xl font-extrabold text-slate-900" data-ko="당신의 후원이 아이들의 <br class='hidden sm:block' />미래가 됩니다" data-en="Your support becomes <br/>their future">당신의 후원이 아이들의 <br class="hidden sm:block" />미래가 됩니다</h3>
+                <p class="mt-6 text-slate-500 font-medium" data-ko="모든 후원금은 샘난민센터의 교육 환경 개선과 실습 기기 도입에 100% 투명하게 사용됩니다." data-en="All donations are used 100% transparently to improve education environment.">모든 후원금은 샘난민센터의 교육 환경 개선과 실습 기기 도입에 100% 투명하게 사용됩니다.</p>
+            </div>
+
+            <!-- Donation Card -->
+            <div class="mt-16 rounded-[40px] border border-slate-200 bg-white p-8 shadow-2xl shadow-primary-900/5 sm:p-12 relative overflow-hidden">
+                
+                <!-- Segment Control (Monthly / Once) -->
+                <div class="flex justify-center mb-12">
+                    <div class="inline-flex rounded-2xl bg-slate-100 p-1.5 w-full sm:w-auto">
+                        <button id="btn-monthly" onclick="setDonationType('monthly')" class="flex-1 sm:flex-none rounded-xl px-8 py-3 text-sm font-bold transition-all bg-white shadow-sm text-primary-600" data-ko="정기후원" data-en="Monthly">정기후원</button>
+                        <button id="btn-once" onclick="setDonationType('once')" class="flex-1 sm:flex-none rounded-xl px-8 py-3 text-sm font-bold transition-all text-slate-500 hover:text-slate-700" data-ko="일시후원" data-en="One-time">일시후원</button>
+                    </div>
+                </div>
+
+                <!-- Usage Plan List -->
+                <div class="space-y-4">
+                    <!-- Item 1 -->
+                    <label class="flex cursor-pointer items-start gap-4 rounded-3xl border border-slate-100 p-6 transition-all hover:border-primary-400 hover:bg-primary-50/50 group">
+                        <div class="mt-1">
+                            <i data-lucide="check-circle-2" class="w-6 h-6 text-slate-300 group-hover:text-primary-500 transition-colors"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                                <span class="font-bold text-slate-800" data-ko="오프라인 학습 서버 구축" data-en="Local Server Setup">오프라인 학습 서버 구축</span>
+                                <span class="text-primary-700 font-black bg-primary-50 px-3 py-1 rounded-full text-sm inline-block w-max plan-price" data-monthly="월 3만원" data-once="3만원">월 3만원</span>
+                            </div>
+                            <p class="mt-2 text-sm text-slate-500 font-medium leading-relaxed" data-ko="인터넷이 불안정한 난민촌 환경에서도 끊김 없이 AI 실습이 가능한 자체 로컬 서버 운영" data-en="Operating a local server for uninterrupted AI practice in unstable internet environments.">인터넷이 불안정한 난민촌 환경에서도 끊김 없이 AI 실습이 가능한 자체 로컬 서버 운영</p>
+                        </div>
+                        <input type="radio" name="plan" class="sr-only" checked>
+                    </label>
+
+                    <!-- Item 2 -->
+                    <label class="flex cursor-pointer items-start gap-4 rounded-3xl border border-slate-100 p-6 transition-all hover:border-primary-400 hover:bg-primary-50/50 group">
+                        <div class="mt-1">
+                            <i data-lucide="check-circle-2" class="w-6 h-6 text-slate-300 group-hover:text-primary-500 transition-colors"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                                <span class="font-bold text-slate-800" data-ko="교육용 실습 기기 지원" data-en="Educational Device Support">교육용 실습 기기 지원</span>
+                                <span class="text-primary-700 font-black bg-primary-50 px-3 py-1 rounded-full text-sm inline-block w-max plan-price" data-monthly="월 5만원" data-once="5만원">월 5만원</span>
+                            </div>
+                            <p class="mt-2 text-sm text-slate-500 font-medium leading-relaxed" data-ko="난민 학생 1인의 개인별 크롬북/태블릿 구매 및 디지털 포트폴리오 관리를 위한 클라우드 지원" data-en="Purchasing Chromebooks/tablets for refugee students and cloud support.">난민 학생 1인의 개인별 크롬북/태블릿 구매 및 디지털 포트폴리오 관리를 위한 클라우드 지원</p>
+                        </div>
+                        <input type="radio" name="plan" class="sr-only">
+                    </label>
+
+                    <!-- Item 3 -->
+                    <label class="flex cursor-pointer items-start gap-4 rounded-3xl border border-slate-100 p-6 transition-all hover:border-primary-400 hover:bg-primary-50/50 group">
+                        <div class="mt-1">
+                            <i data-lucide="check-circle-2" class="w-6 h-6 text-slate-300 group-hover:text-primary-500 transition-colors"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                                <span class="font-bold text-slate-800" data-ko="통합 디지털 교실 운영" data-en="Digital Classroom Operation">통합 디지털 교실 운영</span>
+                                <span class="text-primary-700 font-black bg-primary-50 px-3 py-1 rounded-full text-sm inline-block w-max plan-price" data-monthly="월 10만원" data-once="10만원">월 10만원</span>
+                            </div>
+                            <p class="mt-2 text-sm text-slate-500 font-medium leading-relaxed" data-ko="현지 전문 강사 초빙, 초고속 통신망 유지비, 센터 실습 공간 임대 및 유지보수 전액 지원" data-en="Full support for hiring local expert instructors, internet fees, and space rental.">현지 전문 강사 초빙, 초고속 통신망 유지비, 센터 실습 공간 임대 및 유지보수 전액 지원</p>
+                        </div>
+                        <input type="radio" name="plan" class="sr-only">
+                    </label>
+                </div>
+
+                <button class="mt-12 block w-full rounded-2xl bg-primary-500 py-6 text-xl font-black text-white shadow-xl shadow-primary-200 transition-all hover:bg-primary-600 hover:scale-[1.02] active:scale-95" onclick="alert('결제 데모 페이지입니다.')" data-ko="지금 후원하기" data-en="Donate Now">
+                    지금 후원하기
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         [Component: Footer] 
+    =========================================== -->
+    <footer class="bg-slate-900 pt-24 pb-12 text-white">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="grid gap-12 border-b border-white/10 pb-16 md:grid-cols-4">
+                <!-- Branding -->
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-primary-600 font-bold text-xl">SF</div>
+                        <h1 class="text-xl font-black tracking-tight uppercase">Serving Friends</h1>
+                    </div>
+                    <p class="mt-6 max-w-sm text-slate-400 text-sm leading-relaxed font-medium" data-ko="써빙프렌즈는 전 세계 소외된 이웃들에게 실질적인 도움과 자립의 기회를 제공하는 국제구호개발 NGO입니다. 쿠알라룸푸르 프로젝트는 난민 청소년의 꿈을 응원합니다." data-en="Serving Friends is an international NGO providing practical help and opportunities for independence to marginalized neighbors worldwide.">
+                        써빙프렌즈는 전 세계 소외된 이웃들에게 실질적인 도움과 자립의 기회를 제공하는 국제구호개발 NGO입니다. 
+                        쿠알라룸푸르 프로젝트는 난민 청소년의 꿈을 응원합니다.
+                    </p>
+                </div>
+                
+                <!-- Partners -->
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-primary-400 mb-6">Partners</h4>
+                    <ul class="space-y-4 text-sm text-slate-400 font-medium">
+                        <li class="hover:text-white cursor-pointer transition-colors" data-ko="샘난민센터 (Sam Center)" data-en="Sam Refugee Center">샘난민센터 (Sam Center)</li>
+                        <li class="hover:text-white cursor-pointer transition-colors" data-ko="써퍼즈 서포터즈 팀" data-en="Surfers Supporters Team">써퍼즈 서포터즈 팀</li>
+                        <li class="hover:text-white cursor-pointer transition-colors" data-ko="글로벌 디지털 프리랜서 연합" data-en="Global Digital Freelancers">글로벌 디지털 프리랜서 연합</li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-primary-400 mb-6">Contact</h4>
+                    <ul class="space-y-4 text-sm text-slate-400 font-medium">
+                        <li class="flex items-center gap-3 hover:text-white cursor-pointer transition-colors">
+                            <i data-lucide="instagram" class="w-4 h-4 text-primary-500"></i> @surfers_volunteers
+                        </li>
+                        <li class="flex items-center gap-3 hover:text-white cursor-pointer transition-colors">
+                            <i data-lucide="external-link" class="w-4 h-4 text-primary-500"></i> servingfriends.org
+                        </li>
+                        <li class="flex items-center gap-3 hover:text-white cursor-pointer transition-colors">
+                            <i data-lucide="mail" class="w-4 h-4 text-primary-500"></i> info@servingfriends.org
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom -->
+            <div class="mt-12 flex flex-col items-center justify-between gap-6 md:flex-row">
+                <p class="text-xs text-slate-500 font-medium">
+                    &copy; 2026 SERVING FRIENDS / SURFERS. All Rights Reserved.
+                </p>
+                <div class="flex gap-6">
+                    <a href="#" class="text-xs text-slate-500 hover:text-white transition-colors font-bold" data-ko="개인정보처리방침" data-en="Privacy Policy">개인정보처리방침</a>
+                    <a href="#" class="text-xs text-slate-500 hover:text-white transition-colors font-bold" data-ko="이용약관" data-en="Terms of Service">이용약관</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         [JavaScript Logic]
+    =========================================== -->
+    <script>
+        // 1. Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 2. State Management
+        let currentLang = 'ko';
+        let currentDonationType = 'monthly';
+
+        // 3. Language Toggle Function
+        function toggleLanguage() {
+            currentLang = currentLang === 'ko' ? 'en' : 'ko';
+            
+            document.getElementById('lang-text').innerText = currentLang === 'ko' ? 'KOREAN' : 'ENGLISH';
+            
+            const elements = document.querySelectorAll('[data-ko]');
+            elements.forEach(el => {
+                if (el.classList.contains('story-text') && el.dataset.currentLang === 'my') return;
+                el.innerHTML = currentLang === 'ko' ? el.getAttribute('data-ko') : el.getAttribute('data-en');
+                if(el.classList.contains('story-text')) el.dataset.currentLang = currentLang;
+            });
+
+            updatePlanPrices();
+        }
+
+        // 4. Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            
+            if (menu.classList.contains('hidden-content')) {
+                menu.classList.remove('hidden-content');
+                icon.setAttribute('data-lucide', 'x');
+            } else {
+                menu.classList.add('hidden-content');
+                icon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons(); 
+        }
+
+        // 5. Story Language Toggle
+        function toggleStoryLang(btnElement) {
+            const container = btnElement.parentElement;
+            const textElement = container.querySelector('.story-text');
+            const btnTextElement = container.querySelector('.btn-text');
+            
+            if (textElement.dataset.currentLang !== 'my') {
+                textElement.innerText = textElement.getAttribute('data-my');
+                textElement.dataset.currentLang = 'my';
+                btnTextElement.innerText = currentLang === 'ko' ? '한국어로 보기' : 'Read in ' + (currentLang==='ko'?'Korean':'English');
+            } else {
+                textElement.innerText = currentLang === 'ko' ? textElement.getAttribute('data-ko') : textElement.getAttribute('data-en');
+                textElement.dataset.currentLang = currentLang;
+                btnTextElement.innerText = currentLang === 'ko' ? '미얀마어 원문 보기' : 'Read in Myanmar';
+            }
+        }
+
+        // 6. Donation Type Toggle
+        function setDonationType(type) {
+            currentDonationType = type;
+            const monthlyBtn = document.getElementById('btn-monthly');
+            const onceBtn = document.getElementById('btn-once');
+
+            if (type === 'monthly') {
+                monthlyBtn.className = "flex-1 sm:flex-none rounded-xl px-8 py-3 text-sm font-bold transition-all bg-white shadow-sm text-primary-600";
+                onceBtn.className = "flex-1 sm:flex-none rounded-xl px-8 py-3 text-sm font-bold transition-all text-slate-500 hover:text-slate-700";
+            } else {
+                onceBtn.className = "flex-1 sm:flex-none rounded-xl px-8 py-3 text-sm font-bold transition-all bg-white shadow-sm text-primary-600";
+                monthlyBtn.className = "flex-1 sm:flex-none rounded-xl px-8 py-3 text-sm font-bold transition-all text-slate-500 hover:text-slate-700";
+            }
+            
+            updatePlanPrices();
+        }
+
+        function updatePlanPrices() {
+            const priceElements = document.querySelectorAll('.plan-price');
+            priceElements.forEach(el => {
+                if (currentDonationType === 'monthly') {
+                    let text = el.getAttribute('data-monthly');
+                    if(currentLang === 'en') {
+                        text = text.replace('월 ', '$').replace('만원', '0/mo');
+                    }
+                    el.innerText = text;
+                } else {
+                    let text = el.getAttribute('data-once');
+                    if(currentLang === 'en') {
+                        text = text.replace('만원', '0');
+                        text = '$' + text;
+                    }
+                    el.innerText = text;
+                }
+            });
+        }
+
+        // 7. Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-sm');
+            } else {
+                header.classList.remove('shadow-sm');
+            }
+        });
+        
+        updatePlanPrices();
+
+    </script>
+</body>
+</html>
